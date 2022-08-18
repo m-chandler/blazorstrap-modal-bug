@@ -1,0 +1,19 @@
+﻿@page "/"
+
+<div>
+    <BSModal IsStaticBackdrop="true" HasCloseButton="false" @ref="Modal">
+        <Header>Modal Title</Header>
+        <Content>This modal prompts the user to do something and closes when it is complete or times out.</Content>
+    </BSModal>
+    <BSButton Color="BSColor.Primary" OnClick="LaunchModal">Launch demo modal</BSButton>
+</div>
+
+@code {
+    public BSModal? Modal { get; set; }
+    public async Task LaunchModal()
+    {
+        await Modal!.ShowAsync();
+        await Task.Delay(100); // 100 not ok, 200 ok.
+        await Modal!.HideAsync();
+    }
+}
